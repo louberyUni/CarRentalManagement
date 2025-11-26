@@ -5,15 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CarRentalManagement.Domain;
 using CarRentalManagement.Configurations.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace CarRentalManagement.Data
 {
-    public class CarRentalManagementContext : DbContext
+    //public class IdentityContext(DbContextOptions<IdentityContext> options) : IdentityDbContext<CarRentalManagementUser>(options)
+    public class CarRentalManagementContext(DbContextOptions<CarRentalManagementContext> options) : IdentityDbContext<CarRentalManagementUser>(options)
     {
-        public CarRentalManagementContext (DbContextOptions<CarRentalManagementContext> options)
-            : base(options)
-        {
-        }
 
         public DbSet<CarRentalManagement.Domain.Make> Make { get; set; } = default!;
         public DbSet<CarRentalManagement.Domain.Model> Model { get; set; } = default!;
